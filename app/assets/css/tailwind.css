@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-zinc-50 text-zinc-900 dark:bg-obsidian-950 dark:text-zinc-100 transition-colors duration-200;
+  }
+
+  ::selection {
+    @apply bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-950;
+  }
+}
+
+/* Hide scrollbars cleanly where horizontal pill lists are used */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Subtle architectural grid mask at top of page */
+.architectural-grid {
+  background-size: 48px 48px;
+  background-image:
+    linear-gradient(to right, rgba(113, 113, 122, 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(113, 113, 122, 0.09) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse 85% 55% at 50% 0%, #000 25%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 55% at 50% 0%, #000 25%, transparent 100%);
+}
+
+.dark .architectural-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+}
+
+/* Shiki dual-theme syntax highlighting */
+.shiki,
+.shiki span {
+  color: var(--shiki-light);
+  background-color: transparent !important;
+  font-style: var(--shiki-light-font-style);
+  font-weight: var(--shiki-light-font-weight);
+  text-decoration: var(--shiki-light-text-decoration);
+}
+
+.dark .shiki,
+.dark .shiki span {
+  color: var(--shiki-dark);
+  background-color: transparent !important;
+  font-style: var(--shiki-dark-font-style);
+  font-weight: var(--shiki-dark-font-weight);
+  text-decoration: var(--shiki-dark-text-decoration);
+}
+
+.shiki-plain code {
+  @apply text-zinc-800 dark:text-zinc-200;
+}
+
+/* Editorial Markdown Prose */
+.portfolio-prose {
+  @apply prose prose-zinc dark:prose-invert max-w-none;
+  @apply prose-headings:font-semibold prose-headings:tracking-tight prose-headings:scroll-mt-28;
+  @apply prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:pb-2.5 prose-h2:border-b prose-h2:border-zinc-200/80 dark:prose-h2:border-zinc-800/80;
+  @apply prose-h3:text-base prose-h3:mt-7 prose-h3:mb-2.5;
+  @apply prose-p:text-[15px] prose-p:leading-7 prose-p:text-zinc-600 dark:prose-p:text-zinc-300;
+  @apply prose-li:text-[15px] prose-li:leading-7 prose-li:text-zinc-600 dark:prose-li:text-zinc-300;
+  @apply prose-strong:text-zinc-900 dark:prose-strong:text-zinc-100 prose-strong:font-semibold;
+  @apply prose-a:text-zinc-900 dark:prose-a:text-zinc-100 prose-a:underline prose-a:decoration-zinc-400 dark:prose-a:decoration-zinc-600 prose-a:underline-offset-4 hover:prose-a:decoration-zinc-900 dark:hover:prose-a:decoration-zinc-200;
+  @apply prose-code:before:content-none prose-code:after:content-none;
+  @apply prose-code:font-mono prose-code:text-[13px] prose-code:font-normal prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:bg-zinc-200/60 dark:prose-code:bg-zinc-800/80 prose-code:text-zinc-800 dark:prose-code:text-zinc-200;
+  @apply prose-pre:!bg-zinc-100/95 dark:prose-pre:!bg-zinc-900/90 prose-pre:border prose-pre:border-zinc-200/80 dark:prose-pre:border-zinc-800/90 prose-pre:rounded-xl prose-pre:p-4 prose-pre:overflow-x-auto;
+  @apply prose-img:rounded-xl prose-img:border prose-img:border-zinc-200/80 dark:prose-img:border-zinc-800/80 prose-img:shadow-sm prose-img:my-6;
+  @apply prose-hr:border-zinc-200/80 dark:prose-hr:border-zinc-800/80 prose-hr:my-8;
+  @apply prose-th:text-xs prose-th:uppercase prose-th:tracking-wider prose-th:text-zinc-500 dark:prose-th:text-zinc-400;
+  @apply prose-td:text-sm prose-td:py-2.5;
+}
+
+.portfolio-prose pre code {
+  @apply !bg-transparent !p-0 !border-0 text-[13px] leading-relaxed rounded-none;
+}
+
+.portfolio-prose pre::-webkit-scrollbar {
+  height: 6px;
+}
+
+.portfolio-prose pre::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.portfolio-prose pre::-webkit-scrollbar-thumb {
+  background: rgba(113, 113, 122, 0.35);
+  border-radius: 9999px;
+}
