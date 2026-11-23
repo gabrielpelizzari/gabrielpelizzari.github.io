@@ -6,6 +6,11 @@ const allProjects = computed(() => projectsData.value?.projects || [])
 
 const query = ref('')
 const selectedSource = ref<'all' | ProjectSource>('all')
+const hasBothSources = computed(
+  () =>
+    allProjects.value.some(p => p.source === 'github') &&
+    allProjects.value.some(p => p.source === 'custom'),
+)
 
 const filteredProjects = computed(() => {
   const q = query.value.trim().toLowerCase()
@@ -73,7 +78,10 @@ useSeoMeta({
           />
         </div>
 
-        <div class="inline-flex items-center p-1 rounded-xl border border-zinc-200/80 dark:border-zinc-800 bg-zinc-100/80 dark:bg-zinc-900/80 self-start">
+        <div
+          v-if="hasBothSources"
+          class="inline-flex items-center p-1 rounded-xl border border-zinc-200/80 dark:border-zinc-800 bg-zinc-100/80 dark:bg-zinc-900/80 self-start"
+        >
           <button
             type="button"
             class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all"

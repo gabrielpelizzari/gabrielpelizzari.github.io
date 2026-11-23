@@ -87,8 +87,11 @@ useSeoMeta({
 
         <!-- Filter Controls: Source Mode + Tech Stack -->
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-8 pb-5 border-b border-zinc-200/70 dark:border-zinc-800/70">
-          <!-- Source Tabs -->
-          <div class="inline-flex items-center p-1 rounded-xl border border-zinc-200/80 dark:border-zinc-800 bg-zinc-100/80 dark:bg-zinc-900/80 self-start shrink-0">
+          <!-- Source Tabs (exibido automaticamente quando há projetos GitHub e Autorais) -->
+          <div
+            v-if="githubCount > 0 && customCount > 0"
+            class="inline-flex items-center p-1 rounded-xl border border-zinc-200/80 dark:border-zinc-800 bg-zinc-100/80 dark:bg-zinc-900/80 self-start shrink-0"
+          >
             <button
               type="button"
               class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all"
@@ -130,7 +133,10 @@ useSeoMeta({
           </div>
 
           <!-- Stack Quick Filter -->
-          <div class="flex flex-wrap items-center gap-1.5 lg:justify-end">
+          <div
+            class="flex flex-wrap items-center gap-1.5"
+            :class="githubCount > 0 && customCount > 0 ? 'lg:justify-end' : ''"
+          >
             <button
               type="button"
               class="px-2.5 py-1 rounded-lg font-mono text-[11px] border transition-colors shrink-0"
