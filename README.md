@@ -71,7 +71,14 @@ npm install
 # Rodar em desenvolvimento (http://localhost:3000)
 npm run dev
 
-# Build de produção
+# Build de produção (SSR)
 npm run build
 npm run preview
+
+# Geração estática (GitHub Pages)
+npm run generate
 ```
+
+## Deploy Automático (GitHub Pages)
+
+O workflow [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml) gera o site estático (`npm run generate`) e publica automaticamente em `https://gabrielpelizzari.github.io` a cada `push` na branch `main` (ou sob demanda pela aba **Actions** no GitHub).
